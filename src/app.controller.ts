@@ -28,7 +28,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post("dto") // JSON
+  @Post("dto")
   @UsePipes(new ValidationPipe({ transform: true }))
   getUserInfoByDto(@Body() body: UserInfoDto) {
     console.log(body, typeof body.age);
