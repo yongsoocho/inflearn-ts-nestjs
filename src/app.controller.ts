@@ -6,13 +6,14 @@ import {
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
-import { AppService } from "./app.service";
+import { AppServiceImpl } from "./app.service.impl";
+// import { AppService } from "./app.service";
 import { GetUserInfo, IGetUserInfo } from "./types/index";
 import { GetUserDto } from "./dto/user.dto";
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppServiceImpl) {}
 
   @Get()
   getHello(): string {

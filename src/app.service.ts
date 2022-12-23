@@ -1,8 +1,9 @@
-import { Injectable } from "@nestjs/common";
+export interface AppService {
+  register(): void;
 
-@Injectable()
-export class AppService {
-  getHello(): string {
-    return "Hello World!";
-  }
+  findUser(): void;
+
+  deletUser(): void;
+
+  getHello(): string;
 }
