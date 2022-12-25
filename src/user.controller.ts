@@ -1,5 +1,6 @@
-import { Controller, Get, Inject } from "@nestjs/common";
+import { Controller, Get, Inject, Query } from "@nestjs/common";
 import { UserService } from "./user.service";
+import { UserIdDto } from "./dto/user.dto";
 
 @Controller("user")
 export class UserController {
@@ -8,7 +9,9 @@ export class UserController {
   ) {}
 
   @Get()
-  findUser() {
-    return this.userService.findUser();
+  findUser(@Query() body: UserIdDto) {
+    console.log(UserIdDto.Req(body));
+    const result = this.userService.findUser(UserIdDto.Req(body));
+    return UserIdDto.Res(result);
   }
 }
