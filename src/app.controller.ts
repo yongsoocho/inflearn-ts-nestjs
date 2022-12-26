@@ -9,11 +9,20 @@ import {
 } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { IUserInfo, UserInfo } from "./types/user.type";
-import { UserInfoDto } from "./dto/user.dto";
+import { UserInfoDto, UserQueryIdDto } from "./dto/user.dto";
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Get("something")
+  somethingLogicToUser(@Query() query: UserQueryIdDto) {
+    const payload = UserQueryIdDto.Req(query);
+
+    const result = this.appService.somethingLogicToUser(payload);
+
+    return UserQueryIdDto.Res(result);
+  }
 
   @Get()
   getHello(@Query("ID") ID: number): string {
