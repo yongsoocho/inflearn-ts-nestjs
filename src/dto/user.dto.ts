@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsNumber, IsString } from "class-validator";
 import { IUserDB } from "../db/user.repository";
 
@@ -20,19 +21,31 @@ export class GetUserDto {
 }
 
 export class UserIdDto {
-  ID: string | number;
+  @ApiProperty()
+  ID?: number;
+  @ApiProperty()
+  EMAIL?: string;
+  @ApiProperty()
+  NAME?: string;
 
-  public static Req(p: UserIdDto) {
-    return {
-      ID: Number(p?.ID) ?? 1,
-    };
+  constructor(ID?: number | string, EMAIL?: string, NAME?: string) {
+    if (ID) this.ID = typeof ID === "number" ? ID : Number(ID);
+    if (EMAIL) this.EMAIL = EMAIL;
+    if (NAME) this.NAME = NAME;
   }
 
+  public static Req(p: UserIdDto) {
+    return new UserIdDto(p.ID);
+  }
+
+  @ApiProperty()
   public static Res(p: IUserDB) {
-    return {
-      ID: p.USER_ID,
-      EMAIL: p.EMAIL,
-      NAME: p.NAME,
-    };
+    // return {
+    //   ID: p.USER_ID ?? 1,
+    //   EMAIL: p.EMAIL ?? "email@example.com",
+    //   NAME: p.NAME ?? "알수없음",
+    // };
+
+    return new UserIdDto(p.USER_ID, p.EMAIL, p.NAME);
   }
 }
