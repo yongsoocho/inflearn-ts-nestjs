@@ -14,17 +14,17 @@ export class UserInfoDto {
       super();
     }
 
-    ID_(ID) {
+    $ID(ID) {
       this.ID = ID;
       return this;
     }
 
-    NAME_(NAME) {
+    $NAME(NAME) {
       this.NAME = NAME;
       return this;
     }
 
-    AGE_(AGE) {
+    $AGE(AGE) {
       this.AGE = AGE;
       return this;
     }
@@ -35,4 +35,4 @@ export class UserInfoDto {
   };
 }
 
-console.log(new UserInfoDto.Builder().ID_(1).NAME_("soo").build());
+console.log(new UserInfoDto.Builder().$ID(1).$NAME("soo").build());
