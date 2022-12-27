@@ -8,7 +8,7 @@ export class AppService {
   }
 
   somethingLogicToUser(payload) {
-    const user: IUserDB = db.find((e) => e.USER_ID === payload.ID);
+    const user: IUserDB = db.find((e) => e.USER_ID === payload.USER_ID);
 
     // 비밀번호랑 대조해서 로그인
 
