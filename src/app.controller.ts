@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
@@ -10,14 +11,20 @@ import { AppServiceImpl } from "./app.service.impl";
 // import { AppService } from "./app.service";
 import { GetUserInfo, IGetUserInfo } from "./types/index";
 import { GetUserDto } from "./dto/user.dto";
+import { ApiResponse } from "@nestjs/swagger";
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppServiceImpl) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiResponse({ status: 200 })
+  getHello(@Query() query) {
+    return {
+      ID: 1,
+      NAME: "yongs",
+      EMAIL: "yongsoocho@naver.com",
+    };
   }
 
   // class-transformer class-validator

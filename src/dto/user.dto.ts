@@ -34,7 +34,8 @@ export class UserIdDto {
     if (NAME) this.NAME = NAME;
   }
 
-  public static Req(p: UserIdDto) {
+  @ApiProperty()
+  public static Req(p: UserIdDto): any {
     return new UserIdDto(p.ID);
   }
 
@@ -48,4 +49,18 @@ export class UserIdDto {
 
     return new UserIdDto(p.USER_ID, p.EMAIL, p.NAME);
   }
+}
+
+export class UserInfoDto {
+  constructor(
+    protected _ID?: number | string,
+    protected _name?: string,
+    protected _age?: number,
+  ) {}
+
+  static Builder = class extends UserIdDto {
+    constructor() {
+      super();
+    }
+  };
 }

@@ -11,7 +11,6 @@ export class UserController {
   ) {}
 
   @Get()
-  @ApiQuery({ type: UserIdDto.Req })
   @ApiResponse({ status: 200, type: UserIdDto })
   findUser(@Query() body: UserIdDto) {
     console.log(UserIdDto.Req(body));
